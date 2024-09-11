@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Yello Chilli Sales Report</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://source.unsplash.com/1600x900/?indian-spices');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF6B6B;
+            text-align: center;
+            font-size: 2.5em;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            background-color: #4ECDC4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #45B7AA;
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .chart-container {
+            width: 70%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #FFD93D;
+            color: #6E44FF;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .red{
+            color: rgb(220 38 38);
+        }
+        .amber{
+            color: rgb(252 211 77);
+        }
+        .img{
+            width: 3rem;
+            height: 3rem;
+        }
+        .abc{
+            color: #333;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="https://rishavgupta01.github.io/theyellowchilli.github.io/image.png" class="img">
+            <span CLASS="red">THE</span><span class="amber"> YELLOW </span><SPAN CLASS="red">CHILLI</SPAN> </span><br>📊<span class="abc">Sales Report</span> 📊</h1>
+        <nav class="menu">
+            <a href="index.html" class="menu-item">Back to Admin Panel</a>
+            <a href="#" class="menu-item">Daily Report</a>
+            <a href="#" class="menu-item">Weekly Report</a>
+            <a href="#" class="menu-item">Monthly Report</a>
+        </nav>
+        <div class="content">
+            <div class="chart-container">
+                <canvas id="salesChart"></canvas>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Sales</th>
+                        <th>Top Selling Item</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody id="salesData">
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        // Sample data for the chart and table
+        const salesData = [
+            { date: '2024-09-06', sales: 2500, topItem: 'Butter Chicken', revenue: 45000 },
+            { date: '2024-09-07', sales: 2800, topItem: 'Paneer Tikka', revenue: 50400 },
+            { date: '2024-09-08', sales: 3200, topItem: 'Chicken Biryani', revenue: 57600 },
+            { date: '2024-09-09', sales: 2700, topItem: 'Masala Dosa', revenue: 48600 },
+            { date: '2024-09-10', sales: 3500, topItem: 'Tandoori Chicken', revenue: 63000 },
+            { date: '2024-09-11', sales: 3100, topItem: 'Palak Paneer', revenue: 55800 },
+            { date: '2024-09-12', sales: 3800, topItem: 'Chicken Curry', revenue: 68400 },
+        ];
+
+        // Populate the table
+        const tableBody = document.getElementById('salesData');
+        salesData.forEach(day => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = day.date;
+            row.insertCell(1).textContent = day.sales;
+            row.insertCell(2).textContent = day.topItem;
+            row.insertCell(3).textContent = `₹${day.revenue}`;
+        });
+
+        // Create the chart
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: salesData.map(day => day.date),
+                datasets: [{
+                    label: 'Daily Sales',
+                    data: salesData.map(day => day.sales),
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Daily Sales Trend'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Sales'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

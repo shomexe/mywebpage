@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Yellow Chilli - Bill Generation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #FF6B6B;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4ECDC4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45b7aa;
+        }
+        #billPreview {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FF6B6B;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bill Generation</h1>
+        <form id="billForm">
+            <label for="customerName">Customer Name:</label>
+            <input type="text" id="customerName" required>
+            
+            <label for="item">Item:</label>
+            <select id="item" required>
+                <option value="">Select an item</option>
+                <option value="Butter Chicken">Butter Chicken</option>
+                <option value="Paneer Tikka">Paneer Tikka</option>
+                <option value="Biryani">Biryani</option>
+                <option value="Naan">Naan</option>
+            </select>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" required>
+            
+            <button type="submit">Generate Bill</button>
+        </form>
+        
+        <div id="billPreview"></div>
+        
+        <a href="index.html" class="btn">Back to Admin Panel</a>
+    </div>
+
+    <script>
+        const prices = {
+            "Butter Chicken": 250,
+            "Paneer Tikka": 200,
+            "Biryani": 180,
+            "Naan": 30
+        };
+
+        document.getElementById("billForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const customerName = document.getElementById("customerName").value;
+            const item = document.getElementById("item").value;
+            const quantity = parseInt(document.getElementById("quantity").value);
+            
+            const totalPrice = prices[item] * quantity;
+            
+            const billHtml = `
+                <h2>Bill Preview</h2>
+                <p><strong>Customer Name:</strong> ${customerName}</p>
+                <p><strong>Item:</strong> ${item}</p>
+                <p><strong>Quantity:</strong> ${quantity}</p>
+                <p><strong>Price per item:</strong> ₹${prices[item]}</p>
+                <p><strong>Total Price:</strong> ₹${totalPrice}</p>
+            `;
+            
+            document.getElementById("billPreview").innerHTML = billHtml;
+        });
+    </script>
+</body>
+</html>

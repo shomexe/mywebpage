@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE YELLOW CHILLI - Admin Panel</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #FF6B6B;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .menu-item {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            background-color: #4ECDC4;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .menu-item i {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .red{
+            color: rgb(220 38 38);
+        }
+        .amber{
+            color: rgb(252 211 77);
+        }
+        .img{
+            width: 3rem;
+            height: 3rem;
+        }
+        .admin{
+            color:#333
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="https://rishavgupta01.github.io/theyellowchilli.github.io/image.png" class="img">
+            <span CLASS="red">THE</span><span class="amber"> YELLOW </span><SPAN CLASS="red">CHILLI</SPAN> <BR><span class="admin">Admin Panel</span></h1>
+        <div class="menu">
+            <a href="inventory.html" class="menu-item">
+                <i class="fas fa-boxes"></i>
+                Inventory Management
+            </a>
+            <a href="bill-generation.html" class="menu-item">
+                <i class="fas fa-file-invoice-dollar"></i>
+                Bill Generation
+            </a>
+            <a href="sales-reports.html" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                Sales Reports
+            </a>
+        </div>
+    </div>
+</body>
+</html>
